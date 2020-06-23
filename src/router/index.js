@@ -1,0 +1,50 @@
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import Home from '../views/Home.vue'
+import Register from '../views/Register.vue'
+import User from '../views/User.vue'
+import Item from '../views/Item.vue'
+import Search from '../views/Search.vue'
+import Terms from '../views/Terms.vue'
+
+Vue.use(VueRouter)
+
+const routes = [
+  {
+    path: '/',
+    name: 'Home',
+    component: Home
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register
+    
+  },
+  {
+    path: '/user',
+    name: 'User',
+    component: User
+  },
+  {
+    path: '/item/:uid',
+    name: 'Item',
+    component: Item
+  },
+  {
+    path: '/search/:query?',
+    name: 'Search',
+    component: Search
+  },
+  {
+    path: '/terms',
+    name: 'Terms',
+    component: Terms
+  },
+]
+
+const router = new VueRouter({
+  routes: routes
+})
+
+export default router
