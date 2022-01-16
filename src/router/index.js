@@ -6,6 +6,8 @@ import User from '../views/User.vue'
 import Item from '../views/Item.vue'
 import Search from '../views/Search.vue'
 import Terms from '../views/Terms.vue'
+import Posts from '../views/Posts.vue'
+import Members from '../views/Members.vue'
 
 Vue.use(VueRouter)
 
@@ -27,7 +29,7 @@ const routes = [
     component: User
   },
   {
-    path: '/item/:uid',
+    path: '/local/:uid',
     name: 'Item',
     component: Item
   },
@@ -41,9 +43,20 @@ const routes = [
     name: 'Terms',
     component: Terms
   },
+  {
+    path: '/posts',
+    name: 'Posts',
+    component: Posts
+  },
+  {
+    path: '/members',
+    name: 'Members',
+    component: Members
+  },
 ]
 
 const router = new VueRouter({
+  mode: 'history',
   routes: routes
 })
 

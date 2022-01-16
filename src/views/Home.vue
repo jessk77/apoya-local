@@ -18,7 +18,7 @@
             right: 0
           }"
             >
-              <div class="text-h3 text-white text-left q-ml-lg">Apoya el comercio local</div>
+              <h1 class="text-h3 text-white text-left q-ml-lg q-mt-none">Apoya el comercio local</h1>
               <div class="text-h6 text-grey-3 text-left q-ml-lg">
                 <q-input
                   outlined
@@ -48,9 +48,7 @@
           </template>
         </q-parallax>
         <br />
-        <br />
-        <p class="text-h5 text-center q-mt-lg text-grey-7">MIEMBROS DE LA COMUNIDAD</p>
-        <br />
+        <p class="text-h5 text-center q-mt-lg text-grey-9">MIEMBROS DE LA COMUNIDAD</p>
         <br />
         <div class="q-pa-md row items-start">
           <div
@@ -59,7 +57,7 @@
             v-bind:key="item.uid"
           >
             <q-card class="my-card">
-              <router-link class="pic_box_link" :to="{ name: 'Item', params: {uid: item.uid } }">
+              <router-link class="pic_box_link" :to="{ name: 'Item', params: {uid: item.username } }">
                 <q-img style="height: 280px" :src="item.image | driveImage" />
               </router-link>
               <q-card-section>
@@ -71,7 +69,7 @@
                   style="top: 0; right: 12px; transform: translateY(-50%);"
                 />
 
-                <div class="col text-h6 ellipsis">{{item.name}}</div>
+                <h5 class="q-ma-none col text-h5 ellipsis">{{item.name}}</h5>
               </q-card-section>
 
               <q-card-section class="q-pt-none">
@@ -83,8 +81,19 @@
             </q-card>
           </div>
         </div>
+        <div class="text-center">
+            <q-btn
+                  to="/members"
+                  label="ver todos"
+                  size="16px"
+                  color="green-14"
+                  class="q-mt-lg q-mb-lg"
+                  style="width: 200px;"
+                />
+        </div>
+        
 
-        <q-parallax style="height: 400px;">
+        <q-parallax >
           <template v-slot:media>
             <img src="images/main_slider_2.jpg" />
           </template>
@@ -93,11 +102,12 @@
             <div
               class="absolute column items-center"
               :style="{
-            top: (scope.percentScrolled * 60) + '%',
+            top: (scope.percentScrolled * 50) + '%',
             left: 0,
             right: 0
           }"
             >
+            <h1 class="text-h3 text-white text-left q-ml-lg q-mt-none">¿Qué es Apoya local?</h1>
               <img src="/images/tipoApoya.png" style="width: 250px" />
 
               <div class="text-subtitle1 text-grey-3 text-center q-ma-lg">
@@ -117,8 +127,7 @@
                   class="q-mt-lg q-mb-lg"
                   style="width: 200px;"
                 />
-                <div style="height: 30px" ></div>
-                <q-space />
+                
               
 
             </div>
@@ -162,10 +171,6 @@ export default {
       .then(function(response) {
         self.negocios = response.data;
       });
-    this.$gtag.screenview({
-      app_name: "ApoyaLocal",
-      screen_name: "Home page"
-    });
   },
   methods: {
     callCellphone: function(phone) {
@@ -175,7 +180,7 @@ export default {
   filters: {
     driveImage: function(v) {
       if (v != "" && v != null) {
-        return "https://drive.google.com/uc?export=view&id=" + v;
+        return  v;
       } else {
         return "images/pic_box_2.jpg";
       }

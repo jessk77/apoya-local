@@ -15,6 +15,7 @@ import {
   QToolbar,
   QToolbarTitle,
   QBtn,
+  QBtnDropdown,
   QIcon,
   QList,
   QItem,
@@ -27,6 +28,7 @@ import {
   QCardSection,
   QCardActions,
   QImg,
+  QTooltip,
   QSeparator,
   QSpace,
   QMarkupTable,
@@ -38,14 +40,17 @@ import {
   QRouteTab,
   QTabPanels,
   QTabPanel,
-  QStepper,
-  QStep,
-  QStepperNavigation,
+  QForm,
   QSelect,
   Loading,
   Notify,
   Dialog,
-  QCheckbox
+  QCheckbox,
+  QDialog,
+  QMenu,
+  ClosePopup,
+  QPagination,
+  QSpinnerDots
 } from 'quasar'
 
 Vue.use(Quasar, {
@@ -62,6 +67,7 @@ Vue.use(Quasar, {
     QToolbar,
     QToolbarTitle,
     QBtn,
+    QBtnDropdown,
     QIcon,
     QList,
     QItem,
@@ -74,6 +80,7 @@ Vue.use(Quasar, {
   QCardSection,
   QCardActions,
   QImg,
+  QTooltip,
   QSeparator,
   QSpace,
   QMarkupTable,
@@ -81,17 +88,20 @@ Vue.use(Quasar, {
   QScrollArea,
   QTabs,
   QTab,
+  QForm,
   QRouteTab,
   QTabPanels,
   QTabPanel,
-  QStepper,
-  QStep,
-  QStepperNavigation,
   QSelect,
-  QCheckbox
+  QCheckbox,
+  QDialog,
+  QMenu,
+  QPagination,
+  QSpinnerDots,
   },
   directives: {
-    Ripple
+    Ripple,
+    ClosePopup
   },
   plugins: {
     Notify,

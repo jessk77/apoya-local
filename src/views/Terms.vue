@@ -22,7 +22,7 @@
 
         <p>El sitio WEB "Apoya local" es operado por ATOMIKOD y se encuentra a su disposición para fines informativos. Al acceder o utilizar este Sitio Web, usted acepta estos Términos y Condiciones de Uso y Privacidad.</p>
 
-        <p>ATOMIKOD es dueño único y exclusivo de todos los derechos del Sitio Web, así mismo de todo el contenido incluido en el mismo, en todo lo que respecta audio, fotografías, ilustraciones, gráficos, visuales, videos, copias, textos, software, títulos, datos y materiales del mismo, el diseño y la organización del Sitio Web y la compilación de los contenidos, códigos, datos y los materiales en el Sitio Web, derechos de autor, derechos de marca son exclusivos de la empresa, Su uso del Sitio Web no le otorga propiedad de ninguno de los contenidos, códigos, datos o materiales a los que pueda acceder en o a través del Sitio Web.</p>
+        <p>ATOMIKOD es dueño único y exclusivo de todos los derechos del Sitio Web, así mismo no nos hacemos responsables de todo el contenido incluido en el mismo, en todo lo que respecta audio, fotografías, ilustraciones, gráficos, visuales, videos, copias, textos, títulos, datos y materiales que hayan subido los usuarios. El diseño y la organización del Sitio Web y la compilación de los contenidos, códigos, datos y los materiales en el Sitio Web, derechos de autor, derechos de marca son exclusivos de la empresa, Su uso del Sitio Web no le otorga propiedad de ninguno de los contenidos, códigos, datos o materiales a los que pueda acceder en o a través del Sitio Web.</p>
 
         <p>ATOMIKOD no se hace responsable en ningun momento de operaciones de compra venta, ya que la plataforma tiene como unica finalidad la propagación de la información de negocios y empresas.</p>
           <br />

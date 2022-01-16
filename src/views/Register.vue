@@ -30,9 +30,9 @@
           </template>
         </q-parallax>
 
-        <q-tabs v-model="tab" class=" text-white" align="justify" narrow-indicator>
+        <q-tabs v-model="tab" class="text-white" align="justify" narrow-indicator>
           <q-tab class="bg-light-green-14" name="register" label="REGISTRO" />
-          <q-tab class="bg-green-14" name="login" label="INICIO DE SESIÓN" />
+          <!-- <q-tab class="bg-green-14" name="login" label="INICIO DE SESIÓN" /> -->
         </q-tabs>
 
         <q-separator />
@@ -88,9 +88,10 @@
               type="submit"
               label="Inicia con Facebook"
               color="indigo"
-              class="q-mr-lg q-mt-md"
+              class=" q-mt-md"
               style="width: 230px;"
             />
+            <br>
             <q-btn
               v-on:click="google_register"
               icon="fab fa-google"
@@ -102,7 +103,7 @@
             />
           </q-tab-panel>
 
-          <q-tab-panel name="login">
+          <!-- <q-tab-panel name="login">
             <div class="text-h6">INICIA SESIÓN</div>
             <br />
 
@@ -131,7 +132,9 @@
                   class="q-mb-lg"
                 />
               </div>
-              <div class="text-caption text-grey-7"><q-btn size="sm" flat v-on:click="resetPassword">¿Olvidaste tu contraseña?.</q-btn></div>
+              <div class="text-caption text-grey-7">
+                <q-btn size="sm" flat v-on:click="resetPassword">¿Olvidaste tu contraseña?.</q-btn>
+              </div>
 
               <q-btn
                 type="submit"
@@ -160,7 +163,7 @@
               class="q-mt-md"
               style="width: 230px;"
             />
-          </q-tab-panel>
+          </q-tab-panel> -->
         </q-tab-panels>
       </div>
 
@@ -198,10 +201,10 @@ export default {
     };
   },
   mounted: function() {
-    // this.$gtag.screenview({
-    //   app_name: "ApoyaLocal",
-    //   screen_name: "Register page"
-    // });
+    if (this.$session.exists()) {
+      console.log(this.$session.get("jwt"));
+      this.$router.push("/user");
+    }
   },
   methods: {
     submit_register() {
@@ -214,22 +217,15 @@ export default {
         })
         .catch(err => {
           self.$q.notify({
-            color:"red",
+            color: "red",
             message: err.message,
-            icon: 'announcement',
-            position: 'bottom-left'
-            });
+            icon: "announcement",
+            position: "bottom-left"
+          });
         });
     },
-    show() {
-      if (this.$session.exists()) {
-        this.$router.push("/user");
-      } else {
-        this.$modal.show("hello-world");
-      }
-    },
+
     submit_login() {
-      
       this.error = null;
       var self = this;
       firebase
@@ -243,11 +239,11 @@ export default {
         })
         .catch(err => {
           self.$q.notify({
-            color:"red",
+            color: "red",
             message: err.message,
-            icon: 'announcement',
-            position: 'bottom-left'
-            });
+            icon: "announcement",
+            position: "bottom-left"
+          });
         });
     },
     facebook_register() {
@@ -261,11 +257,11 @@ export default {
         })
         .catch(function(error) {
           self.$q.notify({
-            color:"red",
+            color: "red",
             message: error,
-            icon: 'announcement',
-            position: 'bottom-left'
-            });
+            icon: "announcement",
+            position: "bottom-left"
+          });
         });
     },
     google_register() {
@@ -280,11 +276,11 @@ export default {
         })
         .catch(function(error) {
           self.$q.notify({
-            color:"red",
+            color: "red",
             message: error,
-            icon: 'announcement',
-            position: 'bottom-left'
-            });
+            icon: "announcement",
+            position: "bottom-left"
+          });
         });
     },
     start_session(self) {
@@ -292,11 +288,11 @@ export default {
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
           self.$q.notify({
-            color:"light-green-14",
+            color: "light-green-14",
             message: "Inicio correcto, bienvenido",
-            icon: 'tag_faces',
-            position: 'bottom-left'
-            });
+            icon: "tag_faces",
+            position: "bottom-left"
+          });
           self.$session.start();
           self.$session.set("jwt", user.uid);
           //Vue.http.headers.common["Authorization"] = "Bearer " + user.uid;
@@ -306,27 +302,31 @@ export default {
     },
     resetPassword() {
       var self = this;
-      this.$q.dialog({
-        title: 'Restablecer contraseña',
-        message: 'Ingresa tu correo electrónico',
-        prompt: {
-          model: '',
-          isValid: val => val.length > 2, // << here is the magic
-          type: 'email' // optional
-        },
-        cancel: true
-      }).onOk(data => {
-        firebase.auth().sendPasswordResetEmail(data).then(function() {
-          self.$q.notify({
-            color:"light-green-14",
-            message: "Se ha enviado un correo electrónico, revisa tu bandeja de entrada",
-            icon: 'email',
-            position: 'bottom-left'
+      this.$q
+        .dialog({
+          title: "Restablecer contraseña",
+          message: "Ingresa tu correo electrónico",
+          prompt: {
+            model: "",
+            isValid: val => val.length > 2, // << here is the magic
+            type: "email" // optional
+          },
+          cancel: true
+        })
+        .onOk(data => {
+          firebase
+            .auth()
+            .sendPasswordResetEmail(data)
+            .then(function() {
+              self.$q.notify({
+                color: "light-green-14",
+                message:
+                  "Se ha enviado un correo electrónico, revisa tu bandeja de entrada",
+                icon: "email",
+                position: "bottom-left"
+              });
             });
         });
-      });
-
-      
     }
   }
 };

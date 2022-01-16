@@ -41,12 +41,15 @@ Vue.use(VueGoogleMaps, {
   },
 });
 
-import VueAnalytics from 'vue-analytics';
+// import VueAnalytics from 'vue-analytics';
 
-Vue.use(VueAnalytics, {
-  id: 'UA-115652820-4',
-  router
-});
+// Vue.use(VueAnalytics, {
+//   id: 'UA-115652820-4',
+//   router
+// });
+
+import VueSocialSharing from 'vue-social-sharing'
+Vue.use(VueSocialSharing);
 
 Vue.config.productionTip = false
 

@@ -24,14 +24,14 @@
               <q-item class="q-mt-md q-mb-md">
                 <q-item-section top thumbnail class="q-ml-none">
                   <q-img
-                    v-on:click="redirect(item.uid)"
+                    v-on:click="redirect(item.username)"
                     style="width:60px"
                     v-if="item.image!=='' && item.image!=null"
-                    :src="'https://drive.google.com/uc?export=view&id='+item.image"
+                    :src="item.image"
                   ></q-img>
                 </q-item-section>
 
-                <q-item-section v-on:click="redirect(item.uid)">
+                <q-item-section v-on:click="redirect(item.username)">
                   <q-item-label class="text-h6">{{item.name | uppercase}}</q-item-label>
                   <q-item-label caption>{{item.description | cutcad}}.</q-item-label>
                 </q-item-section>
@@ -106,7 +106,7 @@
 <script>
 // @ is an alias to /src
 import Header from "@/components/MainMenu.vue";
-import servidor from "@/server_conf.js";
+import servidor from "@/server_conf.js"; 
 
 export default {
   name: "Item",
@@ -203,8 +203,8 @@ export default {
       this.zoom = 13;
       this.infoWinOpen = false;
     },
-    redirect: function(uid) {
-      this.$router.push("/item/" + uid);
+    redirect: function(username) {
+      this.$router.push("/local/" + username);
     },
     mouseOver: function(item) {
       this.infoWinOpen = true;
