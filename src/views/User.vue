@@ -72,7 +72,6 @@
 </template>
 
 <script>
-// import servidor from '@/server_conf.js'
 import Header from "@/components/MainMenu";
 import General from "@/components/Data/General";
 import Map from "@/components/Data/Map";
@@ -80,7 +79,7 @@ import Imagec from "@/components/Data/Imagec";
 import Products from "@/components/Data/Products";
 // import CodigoQr from "@/components/Data/CodigoQr";
 
-import servidor from "@/server_conf.js";
+import firebase from "firebase";
 
 export default {
   name: "User",
@@ -111,30 +110,17 @@ export default {
       //console.log(this.$session.get("jwt"));
     }
   },
-  beforeMount: function() {
+  beforeMount: async function() {
     let self = this;
-    this.axios
-      .post(
-        servidor + "index.php/Inicio/get_data",
-        JSON.stringify({
-          uid: this.$session.get("jwt")
-        })
-      )
-      .then(function(response) {
-        if (response.data != null) {
-          self.data = response.data;
-          self.username = response.data.username;
-        } 
-          self.loaded=true
-      });
+     const snapshot = await firebase.firestore().collection('users').where('uid', '==', this.$session.get("jwt")).get()
+    self.data= snapshot.docs.map(doc => doc.data())[0];
+    self.username = self.data.username;
+
+    self.loaded=true;
+
+    
   },
   
-  
-  methods: {
-    
-    
-    
-  }
 };
 </script>
 

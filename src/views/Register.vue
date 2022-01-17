@@ -82,7 +82,7 @@
               />
             </form>
             <div class="text-subtitle2">O</div>
-            <q-btn
+            <!-- <q-btn
               v-on:click="facebook_register"
               icon="fab fa-facebook"
               type="submit"
@@ -91,7 +91,7 @@
               class=" q-mt-md"
               style="width: 230px;"
             />
-            <br>
+            <br> -->
             <q-btn
               v-on:click="google_register"
               icon="fab fa-google"
@@ -103,67 +103,7 @@
             />
           </q-tab-panel>
 
-          <!-- <q-tab-panel name="login">
-            <div class="text-h6">INICIA SESIÓN</div>
-            <br />
-
-            <form action="#" @submit.prevent="submit_login">
-              <div class="row justify-center items-center">
-                <q-input
-                  filled
-                  v-model="form_login.email"
-                  type="email"
-                  dense
-                  required
-                  label="Correo Electrónico"
-                  style="width: 300px;"
-                  class="q-mb-lg"
-                />
-              </div>
-              <div class="row justify-center items-center">
-                <q-input
-                  filled
-                  v-model="form_login.password"
-                  type="password"
-                  dense
-                  required
-                  label="Contraseña"
-                  style="width: 300px;"
-                  class="q-mb-lg"
-                />
-              </div>
-              <div class="text-caption text-grey-7">
-                <q-btn size="sm" flat v-on:click="resetPassword">¿Olvidaste tu contraseña?.</q-btn>
-              </div>
-
-              <q-btn
-                type="submit"
-                label="INICIAR"
-                color="green-14"
-                class="q-mb-lg q-mt-md"
-                style="width: 200px;"
-              />
-            </form>
-            <div class="text-subtitle2">O</div>
-            <q-btn
-              v-on:click="facebook_register"
-              icon="fab fa-facebook"
-              type="submit"
-              label="Inicia con Facebook"
-              color="indigo"
-              class="q-mr-lg q-mt-md"
-              style="width: 230px;"
-            />
-            <q-btn
-              v-on:click="google_register"
-              icon="fab fa-google"
-              type="submit"
-              label="Inicia con Google"
-              color="red"
-              class="q-mt-md"
-              style="width: 230px;"
-            />
-          </q-tab-panel> -->
+         
         </q-tab-panels>
       </div>
 
@@ -175,7 +115,6 @@
 </template>
 
 <script>
-// import servidor from '@/server_conf.js'
 import Header from "@/components/MainMenu";
 
 import firebase from "firebase";

@@ -148,10 +148,11 @@
 </template>
 
 <script>
-import servidor from "@/server_conf.js";
 import Header from "@/components/MainMenu";
 import { fabFacebook } from "@quasar/extras/fontawesome-v5";
 import { openURL } from "quasar";
+
+import firebase from "firebase";
 
 export default {
   name: "Home",
@@ -164,13 +165,12 @@ export default {
       negocios: []
     };
   },
-  mounted: function() {
-    let self = this;
-    this.axios
-      .post(servidor + "index.php/Inicio/get_negocios")
-      .then(function(response) {
-        self.negocios = response.data;
-      });
+  mounted: async function() {
+
+    const self = this;
+    const snapshot = await firebase.firestore().collection('users').get()
+    self.negocios= snapshot.docs.map(doc => doc.data());
+
   },
   methods: {
     callCellphone: function(phone) {
@@ -207,8 +207,5 @@ export default {
   z-index: 2;
 }
 
-.my-card {
-  /* height: "300px;"; */
-}
 </style>
 

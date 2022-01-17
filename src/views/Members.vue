@@ -70,7 +70,7 @@
 <script>
 // @ is an alias to /src
 import Header from "@/components/MainMenu.vue";
-import servidor from "@/server_conf.js";
+import firebase from "firebase";
 
 export default {
   name: "Item",
@@ -87,14 +87,12 @@ export default {
       negocios: []
     };
   },
-  mounted: function() {
-    let self = this;
-    this.axios
-      .post(servidor + "index.php/Listado/get_all_negocios")
-      .then(function(response) {
-        self.negociosAll = response.data;
-        self.negocios=self.paginate(response.data)
-      });
+  mounted: async function() {
+    const self = this;
+    const snapshot = await firebase.firestore().collection('users').get()
+    self.negociosAll= snapshot.docs.map(doc => doc.data());
+    self.negocios=self.paginate(snapshot.docs.map(doc => doc.data()))
+
   },
   computed: {
     totalPages: function() {

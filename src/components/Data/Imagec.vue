@@ -67,7 +67,7 @@ export default {
       formData.append("image", url);
 
       
-
+      //solo hace update de la imagen de portada
       this.axios
         .post(servidor + "index.php/Inicio/save_data2", formData)
         .then(function(response) {
