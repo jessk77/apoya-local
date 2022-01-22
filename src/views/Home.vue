@@ -18,9 +18,9 @@
             right: 0
           }"
             >
-              <h1 class="text-h3 text-white text-left q-ml-lg q-mt-none">Apoya el comercio local</h1>
+              <h1 class="text-h3 text-white text-left q-ml-lg q-mt-none">Apoya el Comercio Local</h1>
               <div class="text-h6 text-grey-3 text-left q-ml-lg">
-                <q-input
+                <!-- <q-input
                   outlined
                   square
                   bg-color="white"
@@ -29,14 +29,14 @@
                   placeholder="Busca negocios cerca de ti"
                   style="width: 300px;"
                   class="q-mt-lg"
-                />
+                /> -->
                 <q-btn
                   dense
                   :to="{ name: 'Search', params: {query: busqueda } }"
-                  label="buscar"
+                  label="buscar locales"
                   size="16px"
                   color="light-green-14"
-                  class="q-mt-lg q-pa-sm"
+                  class="q-mt-md q-pa-sm"
                   style="width: 200px;"
                 />
               </div>
@@ -168,7 +168,7 @@ export default {
   mounted: async function() {
 
     const self = this;
-    const snapshot = await firebase.firestore().collection('users').get()
+    const snapshot = await firebase.firestore().collection('users').limit(9).get()
     self.negocios= snapshot.docs.map(doc => doc.data());
 
   },
