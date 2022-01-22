@@ -119,7 +119,7 @@
               </div>
               <q-btn
                   type="a"
-                  href="https://atomikod.com/contact.php"
+                  href="https://www.facebook.com/apoyalocalmx"
                   target="a_blank"
                   label="contacto"
                   size="16px"

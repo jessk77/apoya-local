@@ -136,6 +136,8 @@
 <script>
 import stringOptions from "@/categories.js";
 import servidor from "@/server_conf.js";
+import firebase from "firebase";
+
 export default {
   name: "General",
   props: ["data"],
@@ -188,7 +190,7 @@ export default {
         if(this.username!=this.usernameOrigin){
           var valido=await this.validateUser()
           
-          if(valido==0){
+          if(valido){
             this.userError=true;
             return;
           }
@@ -230,11 +232,14 @@ export default {
       
     },
     validateUser: async function (){
-        let formData = new FormData();
-        formData.append("username", this.username);
-
-         var existe=await this.axios.post(servidor + "index.php/Inicio/validateUsername2", formData);
-         return existe.data;
+        try {
+          const snapshot = await firebase.firestore().collection('users').where('username', '==', this.username).get()
+          const userData= snapshot.docs.map(doc => doc.data())[0];
+          return userData? true : false;
+        }
+        catch{
+          return false;
+        }
     },
     createValue(val, done) {
       if (val.length > 0) {
